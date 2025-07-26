@@ -1,0 +1,53 @@
+{% extends 'staff/common/layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    {% if user.is_authenticated %}
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <h2 class="mb-4">Evidence Files</h2>
+
+        <!-- Table to display evidence files -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">File Name</th>
+                    <th scope="col">Uploaded By</th>
+                    <th scope="col">Upload Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if result %}
+                    {% for row in result %}
+                        <tr>
+                            <th scope="row">{{ row.id }}</th>
+                            <td>{{ row.file }}</td>
+                            <td>{{ row.row.case.case_title }}</td>
+                            <td>{{ row.upload_date }}</td>
+                            <td>
+                                <a href="" class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                                <form action="" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No evidence files found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        You need to be logged in to view evidence files.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

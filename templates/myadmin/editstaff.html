@@ -1,0 +1,103 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+    <!-- Bootstrap Table with Header - Dark -->
+    <div class="card">
+      <h5 class="card-header">Edit Staff Details</h5>
+      <div class="card-body">
+        <form role="form" method="POST" action="{% url 'update_staff' id=result.user.id %}">
+
+          {% csrf_token %}
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-fname">First Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{result.user.first_name}}" name="fname" id="basic-default-fname"
+                placeholder="Enter your first name " />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-lname">Last Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"value="{{result.user.last_name}}" name="lname" id="basic-default-lname"
+                placeholder="Enter your last name   " />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-username">Username</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"value="{{result.user.username}}" id="basic-default-username" name="username"
+                placeholder="Enter your username " />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-email">Email</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="text" name="email" id="basic-default-email" class="form-control"
+                  placeholder="Enter your email " value="{{result.user.email}}"aria-describedby="basic-default-email2" />
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10 d-flex align-items-center">
+                <div class="form-check me-3">
+                    <input type="radio" class="form-check-input" id="gender-male" name="gender" value="male" {% if result.gender == 'male' %} checked {% endif %} />
+                    <label class="form-check-label" for="gender-male">Male</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="gender-female" name="gender" value="female" {% if result.gender == 'female' %} checked {% endif %} />
+                    <label class="form-check-label" for="gender-female">Female</label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-6">
+          <label class="col-sm-2 col-form-label" for="basic-default-education">Education</label>
+          <div class="col-sm-10">
+            <select name="education" id="basic-default-education" class="form-control" required>
+              <option value="">Select Education</option>
+              <option value="LLB" {% if result.education == 'LLB' %} selected {% endif %}>LLB</option>
+              <option value="B.com & LLB" {% if result.education == 'B.com & LLB' %} selected {% endif %}>B.com & LLB</option> 
+              <option value="BBA & LLB" {% if result.education == 'BBA & LLB' %} selected {% endif %}>BBA & LLB</option>
+              <option value="Intern" {% if result.education == 'Intern' %} selected {% endif %}>Intern</option>
+            </select>
+          </div>
+        </div>
+
+
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-phone">Phone No</label>
+            <div class="col-sm-10">
+              <input type="text" name="phone" id="basic-default-phone" class="form-control phone-mask"
+                placeholder="658 799 8941" aria-label="658 799 8941" value="{{result.phone}}" aria-describedby="basic-default-phone" />
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-sm-2 col-form-label" for="basic-default-message">Address</label>
+            <div class="col-sm-10">
+              <textarea id="basic-default-message" class="form-control" name="address"
+                placeholder="Street Area, Colony, City, State, Pincode"
+                aria-describedby="basic-icon-default-message2">{{result.address}}</textarea>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="reset" class="btn btn-secondary">reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+{% load static %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="row">
+    <div class="col-xxl">
+      <div class="card mb-6">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+          {% if messages.success %}
+            <div class="alert alert-success" role="alert">
+              {{ messages.success }}
+            </div>
+          {% endif %}
+          <h5 class="mb-0">Add Evidence</h5>
+        </div>
+        <div class="card-body">
+          <form role="form" method="POST" action="/myadmin/store_evidence" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-case_id">Case ID</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="case_id" id="basic-default-case_id"
+                  placeholder="Enter Case ID" required />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-description">Description</label>
+              <div class="col-sm-10">
+                <textarea id="basic-default-description" class="form-control" name="description" placeholder="Description"
+                  aria-describedby="basic-icon-default-message2" required></textarea>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-evidence_type">Evidence Type</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="evidence_type" id="basic-default-evidence_type"
+                  placeholder="Enter Evidence Type" required />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-evidence_date">Evidence Date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" name="evidence_date" id="basic-default-evidence_date"
+                  placeholder="Enter Evidence Date" required />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-evidence_file">Evidence File</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control" name="evidence_file" id="basic-default-evidence_file"
+                  placeholder="Upload Evidence File" required />
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-sm-10"> 
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

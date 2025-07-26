@@ -1,0 +1,47 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+{% load static %}
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+      <!-- Bootstrap Table with Header - Dark -->
+      <div class="card">
+        <h5 class="card-header">Feedback</h5>
+        <div class="card-body">
+          {% if user.is_authenticated %}
+          <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead class="table-dark">
+             
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in result %}
+                <tr>
+                  <td>{{ row.id }}</td>
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.email }}</td>
+                  <td>{{ row.message }}</td>
+                  <td>{{ row.created_at }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+            <p>You must be logged in to view the feedback details.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

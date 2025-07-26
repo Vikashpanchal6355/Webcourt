@@ -1,0 +1,70 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+{% load static %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="row">
+    <div class="col-xxl">
+      <div class="card mb-6">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Edit Case</h5>
+        </div>
+        <div class="card-body">
+          <form role="form" method="POST" action="/myadmin/update_case/{{ case.id }}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-title">Title</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="case_title" id="basic-default-title"
+                  placeholder="Enter your Title" value="{{ case.case_title }}" />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-message">Description</label>
+              <div class="col-sm-10">
+                <textarea id="basic-default-message" class="form-control" name="description" placeholder="Description"
+                  aria-describedby="basic-icon-default-message2">{{ case.description }}</textarea>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-fir_date">FIR Date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" name="fir_date" id="basic-default-fir_date"
+                  placeholder="Enter FIR Date" value="{{ case.fir_date|date:'Y-m-d' }}" />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-fir_station">FIR Station</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="fir_station" id="basic-default-fir_station"
+                  placeholder="Enter FIR Station" value="{{ case.fir_station }}" />
+              </div>
+            </div>
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-type">Crime Type</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="type" id="basic-default-type" placeholder="Enter Crime Type" value="{{ case.crimetype }}" />
+              </div>
+            </div>
+           
+            
+            <div class="row mb-6">
+              <label class="col-sm-2 col-form-label" for="basic-default-fir_copy">FIR Copy</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control" name="fir_copy" id="basic-default-fir_copy"
+                  placeholder="Upload FIR Photo" />
+                <small>Current FIR Copy: {{ case.fir_copy }}</small>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="col-sm-10"> 
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

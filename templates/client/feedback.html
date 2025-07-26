@@ -1,0 +1,68 @@
+{% extends 'client/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-3 text-white text-uppercase">Feedback</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Feedback</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Feedback Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center pb-2">
+                <h6 class="text-uppercase">We Value Your Feedback</h6>
+                <h1 class="mb-4">Share Your Thoughts</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="feedback-form">
+                        <div id="success" class="alert alert-success" style="display:none;"></div>
+                        <div id="error" class="alert alert-danger" style="display:none;"></div>
+                        <form name="sentFeedback" id="feedbackForm" novalidate="novalidate" onsubmit="return handleFeedbackSubmit(event)"method="POST" action="/client/feedback">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-sm-6 control-group">
+                                    <input type="text" class="form-control p-4" name="name" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                    <p class="help-block text-danger"></p> 
+                                </div>
+                                <div class="col-sm-6 control-group">
+                                    <input type="email" class="form-control p-4" name="email" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <textarea class="form-control p-4" rows="6" name="message" id="message" placeholder="Your Feedback" required="required" data-validation-required-message="Please enter your feedback"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block" type="submit" id="sendFeedbackButton">Send Feedback</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="min-height: 400px;">
+                    <div class="position-relative h-100 rounded overflow-hidden">
+                        <iframe style="width: 100%; height: 100%; object-fit: cover;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.391377177703!2d72.52620187448703!3d23.04610877915722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8353dee254bb%3A0x6909d82c9319e0a0!2sJG%20University!5e0!3m2!1sen!2sin!4v1732342581335!5m2!1sen!2sin" 
+                        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feedback End -->
+
+    
+{% endblock %}

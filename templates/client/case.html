@@ -1,0 +1,79 @@
+{% extends 'client/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-3 text-white text-uppercase">Case</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Cases</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Case Start -->
+<div class="container-fluid py-1">
+    <div class="container py-1">
+        <div class="text-left pb-2">
+            <h6 class="text-uppercase">Manage Your Cases</h6>
+            <h1 class="mb-4">My Cases</h1>
+        </div>
+        <div class="row">
+            {% for case in result %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">{{ case.case_title }}</h5> -->
+                        <p class="card-text"><b>Case Title:</b> {{ case.case_title }}</p>
+                        <p class="card-text"><b>Description:</b> {{ case.description }}</p>
+                        <p class="card-text"><b>FIR Date:</b> {{ case.fir_date }}</p>
+                        <p class="card-text"><b>FIR Station:</b> {{ case.fir_station }}</p>
+                        <p class="card-text"><b>Crime Type:</b> {{ case.crimetype }}</p>
+                        <p class="card-text"><b>Status:</b> {{ case.status }}</p>
+                        <p class="card-text"><b>Staff Assigned:</b> {{ case.staff.user.username }}</p>
+
+                        <!-- Hearings Section -->
+                        {% if hear %}
+                        <div class="mt-3">
+                            <!-- <h6 class="text-muted">Upcoming Hearings</h6> -->
+                            {% for row in hear %}
+                            <!-- <div class="d-flex justify-content-between mb-0"> -->
+                                <p><b>Hearing Next Date:</b> {{ row.nextdate }}</p>
+                                <p><b>Hearing Remarks:</b> {{ row.remarks }}</p>
+                            <!-- </div> -->
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p>No hearings scheduled.</p>
+                        {% endif %}
+
+                        <!-- FIR Copy -->
+                        {% if case.fir_copy %}
+                        <div class="mt-3">
+                            <p><b>FIR Copy:</b><a href="/media/copy/{{ case.fir_copy }}"target="_blank" class="btn btn-link">Click to View</a>
+                            </p>
+                            <p>
+                                <a href="/media/copy/{{ case.fir_copy }}" download="{{ case.fir_copy }}" class="btn btn-primary btn-sm">Download FIR Copy</a>
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No cases found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Case End -->
+
+{% endblock %}

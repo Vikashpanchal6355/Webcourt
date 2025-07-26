@@ -1,0 +1,58 @@
+{% extends 'staff/common/layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+
+    {% if user.is_authenticated %}
+    <div class="col-xxl">
+        <div class="card mb-6 shadow-sm p-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Add Evidence</h5>
+                {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            
+        
+            <div class="card-body">
+                <!-- <div class="modal-body"> -->
+                    <form method="post" enctype="multipart/form-data" action="/staff/store_evidence/">
+                        {% csrf_token %}
+                        <br>
+                        <div class="row mb-4">
+                            <label class="col-sm-2 col-form-label" for="case">Case</label>
+                            <div class="col-sm-10">
+                                <select id="case" name="case" class="form-select" required>
+                                    <option value="">--Select Case--</option>
+                                    {% for row in result %}
+                                    <option value="{{ row.id }}">{{ row.case_title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row mb-4">
+                            <label for="evidenceFile" class="col-sm-2 col-form-label">Upload Evidence File</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="evidenceFile" name="evidenceFile" required>
+                                <small class="form-text text-muted">Max file size: 5MB. Accepted formats: .pdf, .jpg, .png.</small>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'client/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-3 text-white text-uppercase">Login</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Login</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Login Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center pb-2">
+                <h6 class="text-uppercase">Welcome Back</h6>
+                <h1 class="mb-4">Login to Your Account</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="login-form">
+                        <div id="success"></div>
+                        <form method="POST" action="/client/login_check" id="loginForm" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="control-group">
+                                <input type="text" class="form-control p-4" id="username" name="username" placeholder="Username" required="required" data-validation-required-message="Please enter your username" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="password" class="form-control p-4" id="password" name="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block" type="submit" id="loginButton">Login</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p class="m-0">Don't have an account? <br><a href="contact">Contact with Lawyer</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login End -->
+
+{% endblock %}

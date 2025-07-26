@@ -1,0 +1,45 @@
+{% extends 'myadmin/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="content-wrapper">
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+      <h5 class="card-header">Appointment</h5>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Client Name</th>
+              <th>Subject</th>
+              <th>Case Description</th>
+              <th>Accept</th>
+              <th>Reject</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in result %}
+            <tr>
+              <td>{{ row.id }}</td>
+              <td>{{ row.client.user.username }}</td>
+              <td>{{ row.subject }}</td>
+              <td>{{ row.description }}</td>
+              <td>
+                <button class="btn btn-success btn-sm">Accept</button>
+                </td>
+                <td>
+                <button class="btn btn-danger btn-sm">Reject</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% load static %}
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+  <div class="app-brand demo">
+    <a href="/staff/dashboard" class="app-brand-link">
+      <span class="fa fa-fa-clock">
+
+        <img src="{% static 'staff/assets/img/favicon/webicon.jpg' %}" alt="Webcourt Logo" width="50" height="50">
+        </svg>
+      </span>
+      <span class="app-brand-text demo menu-text fw-bolder ms-2">WebCourt</span>
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+    </a>
+  </div>
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-1">
+    <!-- Dashboard -->
+    <li class="menu-item active">
+      <a href="/staff/dashboard" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Dashboard</div>
+      </a>
+    </li>
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Pages</span>
+    </li>
+
+
+
+
+    <li class="menu-item">
+      <a class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-category"></i>
+        <div data-i18n="Authentications">Manage Cases</div>
+      </a>
+      <ul class="menu-sub">
+
+        <li class="menu-item">
+          <a href="/staff/all_cases" class="menu-link">
+            <div data-i18n="Basic">All Cases <Cases></Cases>
+            </div>
+          </a>
+        </li>
+        </ul>
+
+        <li class="menu-item">
+  <a class="menu-link menu-toggle">
+    <i class="menu-icon tf-icons bx bx-file"></i>
+    <div data-i18n="Authentications">Evidence</div>
+  </a>
+  <ul class="menu-sub">
+    <li class="menu-item">
+      <a href="/staff/add_evidence" class="menu-link">
+        <div data-i18n="Basic">Add Evidence</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="/staff/all_evidence" class="menu-link">
+        <div data-i18n="Basic">All Evidence</div>
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+    <li class="menu-item">
+      <a class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-calendar"></i>
+        <div data-i18n="Authentications">Hearing</div>
+      </a>
+      <ul class="menu-sub">
+
+        <li class="menu-item">
+          <a href="/staff/hearing" class="menu-link">
+            <div data-i18n="Basic">Add Hearing
+            </div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="/staff/all_hearing" class="menu-link">
+            <div data-i18n="Basic">All Hearing<Cases></Cases>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+
+    {% if user.is_authenticated %}
+    <li class="menu-item">
+      <a href="/staff/logout_user" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-log-out"></i>
+        <div data-i18n="Basic">Logout</div>
+      </a>
+    </li>
+    {% else %}
+    <li class="menu-item">
+      <a href="/staff/login" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-log-in"></i>
+        <div data-i18n="Basic">Login</div>
+      </a>
+    </li>
+    {% endif %}
+    <!-- User interface -->
+
+
+    <!-- Extended components -->
+
+    <!-- Forms & Tables -->
+    <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li> -->
+    <!-- Forms -->
+    <!-- Tables -->
+  </ul>
+</aside>

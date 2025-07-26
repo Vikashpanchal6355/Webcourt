@@ -1,0 +1,96 @@
+{% extends 'client/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-3 text-white text-uppercase">Edit Profile</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="dashboard">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Edit Profile</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Edit Profile Start -->
+
+  
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="text-center pb-2">
+            <h6 class="text-uppercase">Edit Profile</h6>
+            <h1 class="mb-4">Update Your Information</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" placeholder="Enter First Name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter Username">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="contact">Contact</label>
+                    <input type="text" class="form-control" id="contact" placeholder="Enter Contact Number">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" id="address" rows="3" placeholder="Enter Address"></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- Update Button -->
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile End -->
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'staff/common/layout.html' %}
+{% block content %}
+{% load static %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-xxl">
+            <div class="card mb-6">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                    <h5 class="mb-0">Add Hearing Details</h5>
+                </div>
+                <div class="card-body">
+                    <form role="form" method="POST" action="/staff/store_hearing" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="ndate">Next Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="ndate" class="form-control" id="ndate" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="remarks">Remarks</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="remarks" id="remarks"
+                                    placeholder="Enter your Remarks" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="case">Case</label>
+                            <div class="col-sm-10">
+                                <select id="case" name="case" class="form-select" required>
+                                    <option value="">--Select Case--</option>
+                                    {% for row in result %}
+                                    <option value="{{row.id}}">{{row.case_title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="client_name">Client Name</label>
+                            <div class="col-sm-10">
+                                <select id="client_name" name="client_name" class="form-select" required>
+                                    <option value="">--Select Client Name--</option>
+                                    {% for row in result1 %}
+                                    <option value="{{row.id}}">{{row.user.username}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="status">Status</label>
+                            <div class="col-sm-10">
+                                <select id="status" name="status" class="form-select" required>
+                                    <option value="">--Select Status--</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Complete">Complete</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-2">Send</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

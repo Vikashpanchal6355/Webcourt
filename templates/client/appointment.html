@@ -1,0 +1,64 @@
+{% extends 'client/common/layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-3 text-white text-uppercase">Appointment</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Appointment</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Appointment Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="text-center pb-2">
+            <h6 class="text-uppercase">Book An Appointment</h6>
+            <h1 class="mb-4">Schedule Your Visit</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="appointment-form">
+                   
+                    <form name="appointmentForm" id="appointmentForm" novalidate="novalidate" method="POST" action="/client/appointment_store">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" id="subject" name="subject" placeholder="Subject"
+                                required="required" data-validation-required-message="Please enter your Subject" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" id="description" name="description"
+                                placeholder="Your Description" required="required"
+                                data-validation-required-message="Please enter your description"/>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+
+                        <div>
+                            <div>
+                                <button class="btn btn-secondary btn-block" type="reset"
+                                    id="resetAppointmentButton">Reset</button>
+                                <button class="btn btn-primary btn-block" type="submit"
+                                    id="sendAppointmentButton">Request Appointment</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->
+
+{% endblock %}

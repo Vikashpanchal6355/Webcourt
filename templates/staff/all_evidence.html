@@ -1,0 +1,6 @@
+from django.shortcuts import render
+from .models import Evidence
+
+def all_evidence(request):
+    evidence = Evidence.objects.all()
+    return render(request, 'all_evidence.html', {'evidence': evidence})
